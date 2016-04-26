@@ -1,8 +1,8 @@
 ship = B-1A  B
-version = 1.0.5
-description = fixed for BDArmory 0.9.2¨¨Tactical Bomber¨1: toggle bay doors¨¨4: next weapon¨5: arm/disarm¨6: fire¨7: countre measures (chaff/flare)¨¨8: toggle flaps
+version = 1.1.0
+description = tested with BDArmory 0.11.0.1¨¨Tactical Bomber¨1: toggle bay doors¨¨4: next weapon¨5: arm/disarm¨6: fire¨7: countre measures (chaff/flare)¨¨8: toggle flaps
 type = SPH
-size = 16.38568,4.241245,11.77499
+size = 16.38568,4.292091,11.775
 PART
 {
 	part = Mark2Cockpit_4294369812
@@ -95,9 +95,15 @@ PART
 	{
 		name = ModuleReactionWheel
 		isEnabled = True
+		actuatorModeCycle = 0
 		stateString = Disabled
 		stagingEnabled = True
 		WheelState = Disabled
+		actuatorModeCycle_UIFlight
+		{
+			controlEnabled = True
+			stateNames = Normal, SAS Only, Pilot Only
+		}
 		EVENTS
 		{
 			OnToggle
@@ -148,6 +154,7 @@ PART
 		isEnabled = True
 		Deployed = False
 		Inoperable = False
+		cooldownToGo = 0
 		stagingEnabled = True
 		EVENTS
 		{
@@ -241,7 +248,7 @@ PART
 				guiActive = False
 				guiActiveUncommand = False
 				guiIcon = Disable Staging
-				guiName = Disable Staging
+				guiName = Experiment: Disable Staging
 				category = Disable Staging
 				guiActiveUnfocused = False
 				unfocusedRange = 2
@@ -367,6 +374,7 @@ PART
 		animTime = 0
 		animSpeed = 1
 		deployPercent = 100
+		animationIsDisabled = False
 		stagingEnabled = True
 		deployPercent_UIFlight
 		{
@@ -437,45 +445,6 @@ PART
 		Log
 		{
 			flight = 0
-		}
-	}
-	MODULE
-	{
-		name = ModuleKISInventory
-		isEnabled = True
-		invName = 
-		helmetEquipped = True
-		stagingEnabled = True
-		EVENTS
-		{
-			ShowInventory
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiActiveUncommand = False
-				guiIcon = 
-				guiName = 
-				category = 
-				guiActiveUnfocused = True
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			ToggleStaging
-			{
-				active = True
-				guiActive = False
-				guiActiveUncommand = False
-				guiIcon = Disable Staging
-				guiName = Disable Staging
-				category = Disable Staging
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-		}
-		ACTIONS
-		{
 		}
 	}
 	MODULE
@@ -705,7 +674,7 @@ PART
 	symMethod = Mirror
 	istg = 0
 	dstg = 0
-	sidx = 1
+	sidx = 0
 	sqor = 0
 	sepI = 0
 	attm = 1
@@ -852,14 +821,14 @@ PART
 	pos = -0.2020946,7.705696,3.167296
 	attPos = 0.4631113,6.895842,1.640015
 	attPos0 = -0.6185724,0.6141461,-7.321191E-08
-	rot = 0.06162849,-0.7044159,-0.06162839,0.7044162
+	rot = 0.06162852,-0.7044159,-0.0616284,0.7044162
 	attRot = -9.257626E-10,-1.018363E-10,0.6427879,0.7660446
 	attRot0 = -0.4545195,-0.5416752,0.4545195,0.5416752
 	mir = 1,1,1
 	symMethod = Mirror
 	istg = 0
 	dstg = 0
-	sidx = 2
+	sidx = 1
 	sqor = 0
 	sepI = 0
 	attm = 1
@@ -1006,14 +975,14 @@ PART
 	pos = 0.1979054,7.705696,3.167296
 	attPos = -0.4185724,-0.01414555,0.2999997
 	attPos0 = 0.6185724,0.6141461,-7.321191E-08
-	rot = 0.06162841,0.7044159,0.06162848,0.7044162
+	rot = 0.06162846,0.7044159,0.06162846,0.7044162
 	attRot = -9.257626E-10,-1.018363E-10,0.6427879,0.7660446
 	attRot0 = -0.4545195,0.5416752,-0.4545195,0.5416752
 	mir = 1,1,1
 	symMethod = Mirror
 	istg = 0
 	dstg = 0
-	sidx = 3
+	sidx = 1
 	sqor = 0
 	sepI = 0
 	attm = 1
@@ -1224,7 +1193,7 @@ PART
 	symMethod = Radial
 	istg = 1
 	dstg = 1
-	sidx = 4
+	sidx = 0
 	sqor = 1
 	sepI = 1
 	attm = 0
@@ -1384,7 +1353,7 @@ PART
 {
 	part = mk2SpacePlaneAdapter_4294328174
 	partName = Part
-	pos = -0.002094664,8.005696,0.4942286
+	pos = -0.002094664,8.005696,0.4942281
 	attPos = 0,-0.07748747,9.237226E-09
 	attPos0 = 0,-1.070495,1.27613E-07
 	rot = 0.7071068,0,0,0.7071068
@@ -1465,7 +1434,7 @@ PART
 {
 	part = mk2CargoBayL_4294308298
 	partName = Part
-	pos = -0.002094664,8.005696,-2.318286
+	pos = -0.002094664,8.005696,-2.318287
 	attPos = 0,0,0
 	attPos0 = 0,-2.812501,3.352762E-07
 	rot = 0,-0.7071068,-0.7071068,0
@@ -1532,6 +1501,7 @@ PART
 		animTime = 1
 		animSpeed = 40
 		deployPercent = 100
+		animationIsDisabled = False
 		stagingEnabled = True
 		deployPercent_UIFlight
 		{
@@ -1605,7 +1575,7 @@ PART
 {
 	part = mk2SpacePlaneAdapter_4294307532
 	partName = Part
-	pos = -0.002094664,8.005696,-5.130816
+	pos = -0.002094664,8.005696,-5.130817
 	attPos = 0,0,0
 	attPos0 = 0,-2.812502,-3.352764E-07
 	rot = -0.7071068,0,0,0.7071068
@@ -1686,7 +1656,7 @@ PART
 {
 	part = parachuteDrogue_4294282212
 	partName = Part
-	pos = -0.002094664,8.005696,-6.070384
+	pos = -0.002094664,8.005696,-6.070386
 	attPos = 0,0,0
 	attPos0 = 0,0.9395657,-1.12005E-07
 	rot = 0.7071068,0,0,-0.7071068
@@ -1718,6 +1688,7 @@ PART
 		name = ModuleParachute
 		isEnabled = True
 		persistentState = STOWED
+		animTime = 0
 		minAirPressureToOpen = 0.02
 		deployAltitude = 2500
 		stagingEnabled = True
@@ -1899,7 +1870,7 @@ PART
 {
 	part = wingConnector3_4294133604
 	partName = Part
-	pos = -0.002094664,8.405697,-5.130824
+	pos = -0.002094664,8.405697,-5.130826
 	attPos = 0,0.05516338,-0.271143
 	attPos0 = 0,-0.05515957,0.6711437
 	rot = -0.4724748,0.526087,-0.4724748,0.526087
@@ -1958,10 +1929,10 @@ PART
 {
 	part = tailfin_4294131622
 	partName = Part
-	pos = -0.002093862,10.28903,-5.099586
+	pos = -0.002093862,10.28903,-5.099587
 	attPos = 0,0,0
 	attPos0 = -1.875846,0.1705962,-4.757108E-08
-	rot = 0.7439994,-3.36008E-07,-3.780222E-07,0.6681805
+	rot = 0.7439994,-3.371748E-07,-3.793216E-07,0.6681805
 	attRot = 0.7071067,0,-0.7071067,0
 	attRot0 = 0.7071072,-1.621954E-07,0.7071065,1.658686E-07
 	mir = 1,1,1
@@ -1990,11 +1961,15 @@ PART
 	{
 		name = ModuleControlSurface
 		isEnabled = True
+		mirrorDeploy = False
+		usesMirrorDeploy = True
 		ignorePitch = False
 		ignoreYaw = True
 		ignoreRoll = True
 		deploy = False
 		deployInvert = False
+		partDeployInvert = False
+		authorityLimiter = 100
 		stagingEnabled = True
 		ignorePitch_UIFlight
 		{
@@ -2015,6 +1990,17 @@ PART
 		deployInvert_UIFlight
 		{
 			controlEnabled = True
+		}
+		partDeployInvert_UIFlight
+		{
+			controlEnabled = True
+		}
+		authorityLimiter_UIFlight
+		{
+			controlEnabled = True
+			minValue = -150
+			maxValue = 150
+			stepIncrement = 0.1
 		}
 		EVENTS
 		{
@@ -2052,10 +2038,10 @@ PART
 {
 	part = tailfin_4294131532
 	partName = Part
-	pos = -0.002093851,10.28903,-5.099586
+	pos = -0.002093851,10.28903,-5.099587
 	attPos = 0,0,0
 	attPos0 = -1.875846,0.1705962,-2.521934E-08
-	rot = -4.093795E-07,0.6681803,0.7439995,-3.641696E-07
+	rot = -4.422613E-07,0.6681803,0.7439996,-3.974802E-07
 	attRot = 0.7071067,0,-0.7071067,0
 	attRot0 = -0.7071072,1.026764E-07,0.7071064,1.063496E-07
 	mir = 1,1,1
@@ -2084,11 +2070,15 @@ PART
 	{
 		name = ModuleControlSurface
 		isEnabled = True
+		mirrorDeploy = True
+		usesMirrorDeploy = True
 		ignorePitch = False
 		ignoreYaw = True
 		ignoreRoll = True
 		deploy = False
 		deployInvert = False
+		partDeployInvert = False
+		authorityLimiter = 100
 		stagingEnabled = True
 		ignorePitch_UIFlight
 		{
@@ -2109,6 +2099,17 @@ PART
 		deployInvert_UIFlight
 		{
 			controlEnabled = True
+		}
+		partDeployInvert_UIFlight
+		{
+			controlEnabled = True
+		}
+		authorityLimiter_UIFlight
+		{
+			controlEnabled = True
+			minValue = -150
+			maxValue = 150
+			stepIncrement = 0.1
 		}
 		EVENTS
 		{
@@ -2146,7 +2147,7 @@ PART
 {
 	part = elevon2_4294122498
 	partName = Part
-	pos = -0.002094288,9.470105,-5.959119
+	pos = -0.002094288,9.470105,-5.959121
 	attPos = 0,0,0
 	attPos0 = -0.9696033,0.9375036,-2.802021E-08
 	rot = -0.5260885,0.4724734,0.5260854,-0.4724766
@@ -2177,11 +2178,15 @@ PART
 	{
 		name = ModuleControlSurface
 		isEnabled = True
+		mirrorDeploy = False
+		usesMirrorDeploy = True
 		ignorePitch = True
 		ignoreYaw = False
 		ignoreRoll = True
 		deploy = False
 		deployInvert = False
+		partDeployInvert = False
+		authorityLimiter = 100
 		stagingEnabled = True
 		ignorePitch_UIFlight
 		{
@@ -2202,6 +2207,17 @@ PART
 		deployInvert_UIFlight
 		{
 			controlEnabled = True
+		}
+		partDeployInvert_UIFlight
+		{
+			controlEnabled = True
+		}
+		authorityLimiter_UIFlight
+		{
+			controlEnabled = True
+			minValue = -150
+			maxValue = 150
+			stepIncrement = 0.1
 		}
 		EVENTS
 		{
@@ -2239,7 +2255,7 @@ PART
 {
 	part = wingConnector3_4294223038
 	partName = Part
-	pos = -1.252587,8.005696,-1.488361
+	pos = -1.252587,8.005696,-1.488362
 	attPos = 0,0,0
 	attPos0 = 1.250491,0.8299265,9.893489E-08
 	rot = 0.7071069,0,-4.214685E-08,0.7071068
@@ -2299,7 +2315,7 @@ PART
 {
 	part = MK1Fuselage_4294261856
 	partName = Part
-	pos = -3.765941,8.005696,-1.532739
+	pos = -3.765941,8.005696,-1.53274
 	attPos = 0,0,0
 	attPos0 = -2.513357,-0.04437748,1.588387E-07
 	rot = 0.4999999,-0.4999999,-0.5000001,0.5000002
@@ -2351,10 +2367,10 @@ PART
 {
 	part = radialEngineBody_4294216714
 	partName = Part
-	pos = -3.765937,8.005696,0.342273
+	pos = -3.765937,8.005696,0.3422723
 	attPos = 0,0,0
 	attPos0 = -2.033022E-07,1.875,-1.825392E-07
-	rot = 0.7071069,-1.904663E-06,-9.985069E-07,0.7071069
+	rot = 0.7071068,-1.857612E-06,-1.008374E-06,0.7071068
 	attRot = 0,0,0,1
 	attRot0 = -4.214685E-08,0.7071068,1.053671E-07,0.7071069
 	mir = 1,1,1
@@ -2488,7 +2504,7 @@ PART
 	pos = -3.765942,8.005696,1.279795
 	attPos = 0,0,0
 	attPos0 = 2.942979E-07,0.9374993,-1.44492E-07
-	rot = 0.7071069,-6.321983E-08,2.107301E-08,0.7071069
+	rot = 0.7071068,-6.321979E-08,2.107295E-08,0.7071068
 	attRot = 0,0,0,1
 	attRot0 = -4.214684E-08,-1.234453E-08,1.318877E-14,1
 	mir = 1,1,1
@@ -2606,10 +2622,10 @@ PART
 {
 	part = JetEngine_4294211406
 	partName = Part
-	pos = -3.765943,8.005696,-3.44314
+	pos = -3.765943,8.005696,-3.443142
 	attPos = 0,0,0
 	attPos0 = 2.161348E-07,-1.910376,-2.953523E-07
-	rot = 0.7071069,-1.904663E-06,-9.985069E-07,0.7071069
+	rot = 0.7071068,-1.857612E-06,-1.008374E-06,0.7071068
 	attRot = 0,0,0,1
 	attRot0 = -4.214685E-08,0.7071068,1.053671E-07,0.7071069
 	mir = 1,1,1
@@ -2741,6 +2757,7 @@ PART
 		animTime = 0
 		animSpeed = 1
 		deployPercent = 100
+		animationIsDisabled = False
 		stagingEnabled = True
 		deployPercent_UIFlight
 		{
@@ -2877,7 +2894,7 @@ PART
 		flowState = True
 		isTweakable = False
 		hideFlow = True
-		isVisible = True
+		isVisible = False
 		flowMode = Both
 	}
 }
@@ -2885,10 +2902,10 @@ PART
 {
 	part = wingConnector2_4294204466
 	partName = Part
-	pos = -4.382413,8.005696,-1.53316
+	pos = -4.382413,8.005696,-1.533161
 	attPos = 0,0,0
 	attPos0 = -7.333526E-08,-0.0004225333,0.6164663
-	rot = -0.7071073,2.167772E-06,1.093026E-06,-0.7071064
+	rot = -0.7071073,2.155197E-06,1.132257E-06,-0.7071064
 	attRot = 0,0,0,1
 	attRot0 = -1.613562E-07,-0.7071065,-7.045157E-08,-0.7071071
 	mir = 1,1,1
@@ -2946,10 +2963,10 @@ PART
 {
 	part = elevon3_4294177570
 	partName = Part
-	pos = -5.356414,8.005696,-2.470661
+	pos = -5.356414,8.005696,-2.470662
 	attPos = 0,0,0
 	attPos0 = -0.9740032,-0.9375003,5.331787E-07
-	rot = 0.7071068,-1.415164E-08,9.121413E-08,0.7071068
+	rot = 0.7071068,-1.053594E-08,9.482967E-08,0.7071068
 	attRot = -0.4999999,-0.4999999,-0.4999999,0.4999999
 	attRot0 = 2.528811E-07,-3.669772E-07,1.192093E-07,-1
 	mir = 1,1,1
@@ -2978,11 +2995,15 @@ PART
 	{
 		name = ModuleControlSurface
 		isEnabled = True
+		mirrorDeploy = False
+		usesMirrorDeploy = True
 		ignorePitch = True
 		ignoreYaw = True
 		ignoreRoll = True
 		deploy = False
 		deployInvert = True
+		partDeployInvert = False
+		authorityLimiter = 100
 		stagingEnabled = True
 		ignorePitch_UIFlight
 		{
@@ -3003,6 +3024,17 @@ PART
 		deployInvert_UIFlight
 		{
 			controlEnabled = True
+		}
+		partDeployInvert_UIFlight
+		{
+			controlEnabled = True
+		}
+		authorityLimiter_UIFlight
+		{
+			controlEnabled = True
+			minValue = -150
+			maxValue = 150
+			stepIncrement = 0.1
 		}
 		EVENTS
 		{
@@ -3040,10 +3072,10 @@ PART
 {
 	part = elevon2_4294179566
 	partName = Part
-	pos = -7.210531,8.005698,-2.470661
+	pos = -7.210532,8.005698,-2.470662
 	attPos = 0,0,0
 	attPos0 = -2.828101,-0.9375002,7.311717E-07
-	rot = -0.7071068,1.415164E-08,-9.121413E-08,-0.7071068
+	rot = -0.7071068,1.053594E-08,-9.482967E-08,-0.7071068
 	attRot = 0.4999999,0.4999999,0.4999999,-0.4999999
 	attRot0 = -2.528811E-07,4.512709E-07,-1.341104E-07,1
 	mir = 1,1,1
@@ -3072,11 +3104,15 @@ PART
 	{
 		name = ModuleControlSurface
 		isEnabled = True
+		mirrorDeploy = True
+		usesMirrorDeploy = True
 		ignorePitch = True
 		ignoreYaw = True
 		ignoreRoll = False
 		deploy = False
 		deployInvert = False
+		partDeployInvert = False
+		authorityLimiter = 100
 		stagingEnabled = True
 		ignorePitch_UIFlight
 		{
@@ -3097,6 +3133,17 @@ PART
 		deployInvert_UIFlight
 		{
 			controlEnabled = True
+		}
+		partDeployInvert_UIFlight
+		{
+			controlEnabled = True
+		}
+		authorityLimiter_UIFlight
+		{
+			controlEnabled = True
+			minValue = -150
+			maxValue = 150
+			stepIncrement = 0.1
 		}
 		EVENTS
 		{
@@ -3134,10 +3181,10 @@ PART
 {
 	part = bahaCmPod_4292169674
 	partName = Part
-	pos = -8.242637,8.005703,-2.376218
+	pos = -8.242638,8.005703,-2.376219
 	attPos = 0,0,0
 	attPos0 = -3.860173,-0.8430544,1.134118E-06
-	rot = -0.7071062,0.7071075,-1.264406E-07,9.90451E-07
+	rot = -0.7071062,0.7071074,-2.980232E-08,9.536743E-07
 	attRot = 0,0,0,1
 	attRot0 = 0.5000002,-0.4999999,0.4999999,0.5000001
 	mir = 1,1,1
@@ -3218,10 +3265,10 @@ PART
 {
 	part = SmallGearBay_4294192924
 	partName = Part
-	pos = -3.765942,7.197778,-1.842535
+	pos = -3.765942,7.297778,-1.842743
 	attPos = 0,0,0
 	attPos0 = 0.8079135,-0.3097947,-1.03185E-07
-	rot = -0.00103323,-9.08984E-07,-1.611636E-06,0.9999996
+	rot = -0.001033247,-8.836735E-07,-1.659775E-06,0.9999996
 	attRot = 0,0,0,1
 	attRot0 = -0.5005165,0.499483,0.5005165,0.499483
 	mir = 1,1,1
@@ -3248,75 +3295,36 @@ PART
 	}
 	MODULE
 	{
-		name = ModuleLandingGear
+		name = ModuleWheelBase
 		isEnabled = True
-		BrakeTorque = 12
-		brakesEngaged = False
-		brakesEnabled = True
-		storedGearState = UNDEFINED
-		storedAnimationSpeed = 0
-		storedAnimationTime = 0
-		StartDeployed = True
+		wheelType = FREE
+		isGrounded = False
+		autoFriction = True
+		frictionMultiplier = 1
+		suspensionEnabled = True
 		stagingEnabled = True
-		BrakeTorque_UIFlight
+		frictionMultiplier_UIFlight
 		{
 			controlEnabled = True
-			minValue = 0
-			maxValue = 30
-			stepIncrement = 1
+			minValue = 0.01
+			maxValue = 5
+			stepIncrement = 0.01
 		}
-		StartDeployed_UIFlight
+		suspensionEnabled_UIFlight
 		{
 			controlEnabled = True
 		}
 		EVENTS
 		{
-			EnableBrakes
-			{
-				active = False
-				guiActive = False
-				guiActiveEditor = True
-				guiActiveUncommand = False
-				guiIcon = Enable brakes
-				guiName = Enable brakes
-				category = Enable brakes
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			DisableBrakes
-			{
-				active = True
-				guiActive = False
-				guiActiveEditor = True
-				guiActiveUncommand = False
-				guiIcon = Disable brakes
-				guiName = Disable brakes
-				category = Disable brakes
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			LowerLandingGear
-			{
-				active = False
-				guiActive = True
-				guiActiveUncommand = False
-				guiIcon = Lower Gear
-				guiName = Lower Gear
-				category = Lower Gear
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			RaiseLandingGear
+			EvtAutoFrictionToggle
 			{
 				active = True
 				guiActive = True
+				guiActiveEditor = True
 				guiActiveUncommand = False
-				guiIcon = Raise Gear
-				guiName = Raise Gear
-				category = Raise Gear
+				guiIcon = 
+				guiName = Friction Control: Auto
+				category = 
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
@@ -3336,11 +3344,112 @@ PART
 		}
 		ACTIONS
 		{
-			OnAction
+			EnableSuspension
 			{
-				actionGroup = Gear
+				actionGroup = None
 			}
-			BrakesAction
+			DisableSuspension
+			{
+				actionGroup = None
+			}
+			ActAutoFrictionToggle
+			{
+				actionGroup = None
+			}
+		}
+	}
+	MODULE
+	{
+		name = ModuleWheelSuspension
+		isEnabled = True
+		suspensionPos = (-1, -1, -1)
+		autoBoost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleWheelSteering
+		isEnabled = True
+		steeringEnabled = False
+		steeringInvert = False
+		stagingEnabled = True
+		steeringEnabled_UIFlight
+		{
+			controlEnabled = True
+		}
+		steeringInvert_UIFlight
+		{
+			controlEnabled = True
+		}
+		EVENTS
+		{
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleWheelBrakes
+		isEnabled = True
+		brakeTweak = 100
+		brakeInput = 0
+		stagingEnabled = True
+		brakeTweak_UIFlight
+		{
+			controlEnabled = True
+			minValue = 0
+			maxValue = 100
+			stepIncrement = 0.1
+		}
+		EVENTS
+		{
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			BrakeAction
 			{
 				actionGroup = Brakes
 			}
@@ -3348,48 +3457,46 @@ PART
 	}
 	MODULE
 	{
-		name = ModuleSteering
+		name = ModuleStatusLight
 		isEnabled = True
-		steeringLocked = True
-		invertSteering = False
 		stagingEnabled = True
 		EVENTS
 		{
-			UnLockSteering
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleWheelDeployment
+		isEnabled = True
+		stateString = Deployed
+		stagingEnabled = True
+		position = 1
+		EVENTS
+		{
+			EventToggle
 			{
 				active = True
 				guiActive = True
 				guiActiveEditor = True
 				guiActiveUncommand = False
-				guiIcon = Unlock Steering
-				guiName = Unlock Steering
-				category = Unlock Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			LockSteering
-			{
-				active = False
-				guiActive = True
-				guiActiveEditor = True
-				guiActiveUncommand = False
-				guiIcon = Lock Steering
-				guiName = Lock Steering
-				category = Lock Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			InvertSteering
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiActiveUncommand = False
-				guiIcon = Invert Steering
-				guiName = Invert Steering
-				category = Invert Steering
+				guiIcon = Toggle
+				guiName = Start Extended
+				category = Toggle
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
@@ -3409,21 +3516,9 @@ PART
 		}
 		ACTIONS
 		{
-			InvertSteeringAction
+			ActionToggle
 			{
-				actionGroup = None
-			}
-			LockSteeringAction
-			{
-				actionGroup = None
-			}
-			UnlockSteeringAction
-			{
-				actionGroup = None
-			}
-			ToggleSteeringAction
-			{
-				actionGroup = None
+				actionGroup = Gear
 			}
 		}
 	}
@@ -3453,9 +3548,70 @@ PART
 	}
 	MODULE
 	{
+		name = FXModuleLookAtConstraint
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleTestSubject
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+			RunTestEvent
+			{
+				active = False
+				guiActive = True
+				guiActiveUncommand = False
+				guiIcon = Run Test
+				guiName = Run Test
+				category = Run Test
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
 		name = ModuleLight
 		isEnabled = True
 		isOn = False
+		uiWriteLock = False
 		lightR = 1
 		lightG = 1
 		lightB = 1
@@ -3538,12 +3694,49 @@ PART
 			}
 		}
 	}
+	MODULE
+	{
+		name = ModuleWheelDamage
+		isEnabled = True
+		isDamaged = False
+		stagingEnabled = True
+		EVENTS
+		{
+			EventRepairExternal
+			{
+				active = False
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Repair Wheel
+				guiName = Repair Wheel
+				category = Repair Wheel
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
 }
 PART
 {
 	part = wingConnector3_4294222978
 	partName = Part
-	pos = 1.248397,8.005696,-1.488361
+	pos = 1.248397,8.005696,-1.488362
 	attPos = 0,0,0
 	attPos0 = -1.250491,0.8299265,9.893489E-08
 	rot = -7.305547E-08,0.7071068,0.7071068,-3.090862E-08
@@ -3601,7 +3794,7 @@ PART
 {
 	part = MK1Fuselage_4294217132
 	partName = Part
-	pos = 3.761795,8.005696,-1.532739
+	pos = 3.761796,8.005696,-1.53274
 	attPos = 0,0,0
 	attPos0 = -2.513357,-0.04437795,-3.748226E-07
 	rot = 0.5000002,0.4999999,0.5000001,0.5000002
@@ -3653,10 +3846,10 @@ PART
 {
 	part = radialEngineBody_4294216542
 	partName = Part
-	pos = 3.761797,8.005695,0.3422713
+	pos = 3.761798,8.005695,0.3422704
 	attPos = 0,0,0
 	attPos0 = -5.960465E-08,1.875,4.768375E-07
-	rot = 0.7071069,-1.815979E-08,2.914564E-09,0.7071069
+	rot = 0.7071068,-1.605659E-09,2.127605E-08,0.7071068
 	attRot = 0,0,0,1
 	attRot0 = -2.468904E-08,-0.7071068,-8.790933E-08,0.7071069
 	mir = 1,1,1
@@ -3787,10 +3980,10 @@ PART
 {
 	part = CircularIntake_4294215252
 	partName = Part
-	pos = 3.761799,8.005695,1.279795
+	pos = 3.7618,8.005695,1.279794
 	attPos = 0,0,0
 	attPos0 = 3.930184E-07,0.9374998,1.790882E-07
-	rot = 0.7071069,-6.722725E-08,-6.722728E-08,0.7071069
+	rot = 0.7071069,-5.338506E-08,-5.338509E-08,0.7071069
 	attRot = 0,0,0,1
 	attRot0 = -4.214683E-08,-3.136686E-08,1.490116E-08,1
 	mir = 1,1,1
@@ -3908,17 +4101,17 @@ PART
 {
 	part = JetEngine_4294211228
 	partName = Part
-	pos = 3.761797,8.005696,-3.443138
+	pos = 3.761798,8.005696,-3.443139
 	attPos = 0,0,0
 	attPos0 = 4.273634E-08,-1.910376,4.768369E-07
-	rot = 0.7071069,-1.815979E-08,2.914564E-09,0.7071069
+	rot = 0.7071068,-1.605659E-09,2.127605E-08,0.7071068
 	attRot = 0,0,0,1
 	attRot0 = -2.468904E-08,-0.7071068,-8.790933E-08,0.7071069
 	mir = 1,1,1
 	symMethod = Mirror
 	istg = 3
 	dstg = 2
-	sidx = 1
+	sidx = 0
 	sqor = 3
 	sepI = 1
 	attm = 0
@@ -4043,6 +4236,7 @@ PART
 		animTime = 0
 		animSpeed = 1
 		deployPercent = 100
+		animationIsDisabled = False
 		stagingEnabled = True
 		deployPercent_UIFlight
 		{
@@ -4179,7 +4373,7 @@ PART
 		flowState = True
 		isTweakable = False
 		hideFlow = True
-		isVisible = True
+		isVisible = False
 		flowMode = Both
 	}
 }
@@ -4187,10 +4381,10 @@ PART
 {
 	part = wingConnector2_4294204384
 	partName = Part
-	pos = 4.378262,8.005696,-1.533165
+	pos = 4.378263,8.005696,-1.533166
 	attPos = 0,0,0
 	attPos0 = 2.031151E-07,-0.000422515,0.6164663
-	rot = -1.868415E-07,0.7071067,0.7071071,-3.343552E-07
+	rot = -2.174632E-07,0.7071067,0.7071071,-3.501164E-07
 	attRot = 0,0,0,1
 	attRot0 = 5.299376E-08,0.7071072,1.78814E-07,0.7071065
 	mir = 1,1,1
@@ -4248,10 +4442,10 @@ PART
 {
 	part = elevon3_4294163974
 	partName = Part
-	pos = 5.352291,8.005696,-2.470663
+	pos = 5.352293,8.005696,-2.470664
 	attPos = 0,0,0
 	attPos0 = -0.974003,-0.9375003,-4.721024E-07
-	rot = 4.796162E-08,0.7071069,0.7071069,2.688823E-08
+	rot = 4.284834E-08,0.7071069,0.7071069,2.177495E-08
 	attRot = -0.4999999,-0.4999999,-0.4999999,0.4999999
 	attRot0 = 2.528811E-07,-3.248303E-07,-1.192092E-07,1
 	mir = 1,1,1
@@ -4280,11 +4474,15 @@ PART
 	{
 		name = ModuleControlSurface
 		isEnabled = True
+		mirrorDeploy = True
+		usesMirrorDeploy = True
 		ignorePitch = True
 		ignoreYaw = True
 		ignoreRoll = True
 		deploy = False
 		deployInvert = True
+		partDeployInvert = False
+		authorityLimiter = 100
 		stagingEnabled = True
 		ignorePitch_UIFlight
 		{
@@ -4305,6 +4503,17 @@ PART
 		deployInvert_UIFlight
 		{
 			controlEnabled = True
+		}
+		partDeployInvert_UIFlight
+		{
+			controlEnabled = True
+		}
+		authorityLimiter_UIFlight
+		{
+			controlEnabled = True
+			minValue = -150
+			maxValue = 150
+			stepIncrement = 0.1
 		}
 		EVENTS
 		{
@@ -4342,10 +4551,10 @@ PART
 {
 	part = elevon2_4294156986
 	partName = Part
-	pos = 7.206433,8.005696,-2.470666
+	pos = 7.206436,8.005696,-2.470667
 	attPos = 0,0,0
 	attPos0 = -2.828101,-0.9375008,-1.635106E-07
-	rot = 4.796162E-08,0.7071069,0.7071069,2.688823E-08
+	rot = 4.284834E-08,0.7071069,0.7071069,2.177495E-08
 	attRot = 0.4999999,0.4999999,0.4999999,-0.4999999
 	attRot0 = 2.528811E-07,-3.248302E-07,-1.192092E-07,1
 	mir = 1,1,1
@@ -4374,11 +4583,15 @@ PART
 	{
 		name = ModuleControlSurface
 		isEnabled = True
+		mirrorDeploy = False
+		usesMirrorDeploy = True
 		ignorePitch = True
 		ignoreYaw = True
 		ignoreRoll = False
 		deploy = False
 		deployInvert = False
+		partDeployInvert = False
+		authorityLimiter = 100
 		stagingEnabled = True
 		ignorePitch_UIFlight
 		{
@@ -4399,6 +4612,17 @@ PART
 		deployInvert_UIFlight
 		{
 			controlEnabled = True
+		}
+		partDeployInvert_UIFlight
+		{
+			controlEnabled = True
+		}
+		authorityLimiter_UIFlight
+		{
+			controlEnabled = True
+			minValue = -150
+			maxValue = 150
+			stepIncrement = 0.1
 		}
 		EVENTS
 		{
@@ -4436,10 +4660,10 @@ PART
 {
 	part = bahaCmPod_4292167896
 	partName = Part
-	pos = 8.238508,8.005703,-2.376214
+	pos = 8.238512,8.005703,-2.376215
 	attPos = 0,0,0
 	attPos0 = -3.860169,-0.8430549,1.795539E-06
-	rot = 0.7071066,0.7071071,4.425419E-07,-5.057622E-07
+	rot = 0.7071067,0.7071073,5.662441E-07,-5.066395E-07
 	attRot = 0,0,0,1
 	attRot0 = 0.5,-0.4999999,0.5000001,0.5000001
 	mir = 1,1,1
@@ -4520,10 +4744,10 @@ PART
 {
 	part = SmallGearBay_4294192436
 	partName = Part
-	pos = 3.761796,7.197776,-1.842537
+	pos = 3.761797,7.297776,-1.842745
 	attPos = 0,0,0
 	attPos0 = -0.8079136,-0.3097946,-9.159404E-08
-	rot = -0.001033525,-5.937564E-08,-1.173138E-07,0.9999996
+	rot = -0.001033515,-5.095171E-08,-1.583248E-07,0.9999995
 	attRot = 0,0,0,1
 	attRot0 = -0.5005166,-0.4994829,-0.5005165,0.499483
 	mir = 1,1,1
@@ -4550,75 +4774,36 @@ PART
 	}
 	MODULE
 	{
-		name = ModuleLandingGear
+		name = ModuleWheelBase
 		isEnabled = True
-		BrakeTorque = 12
-		brakesEngaged = False
-		brakesEnabled = True
-		storedGearState = UNDEFINED
-		storedAnimationSpeed = 0
-		storedAnimationTime = 0
-		StartDeployed = True
+		wheelType = FREE
+		isGrounded = False
+		autoFriction = True
+		frictionMultiplier = 1
+		suspensionEnabled = True
 		stagingEnabled = True
-		BrakeTorque_UIFlight
+		frictionMultiplier_UIFlight
 		{
 			controlEnabled = True
-			minValue = 0
-			maxValue = 30
-			stepIncrement = 1
+			minValue = 0.01
+			maxValue = 5
+			stepIncrement = 0.01
 		}
-		StartDeployed_UIFlight
+		suspensionEnabled_UIFlight
 		{
 			controlEnabled = True
 		}
 		EVENTS
 		{
-			EnableBrakes
-			{
-				active = False
-				guiActive = False
-				guiActiveEditor = True
-				guiActiveUncommand = False
-				guiIcon = Enable brakes
-				guiName = Enable brakes
-				category = Enable brakes
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			DisableBrakes
-			{
-				active = True
-				guiActive = False
-				guiActiveEditor = True
-				guiActiveUncommand = False
-				guiIcon = Disable brakes
-				guiName = Disable brakes
-				category = Disable brakes
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			LowerLandingGear
-			{
-				active = False
-				guiActive = True
-				guiActiveUncommand = False
-				guiIcon = Lower Gear
-				guiName = Lower Gear
-				category = Lower Gear
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			RaiseLandingGear
+			EvtAutoFrictionToggle
 			{
 				active = True
 				guiActive = True
+				guiActiveEditor = True
 				guiActiveUncommand = False
-				guiIcon = Raise Gear
-				guiName = Raise Gear
-				category = Raise Gear
+				guiIcon = 
+				guiName = Friction Control: Auto
+				category = 
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
@@ -4638,11 +4823,112 @@ PART
 		}
 		ACTIONS
 		{
-			OnAction
+			EnableSuspension
 			{
-				actionGroup = Gear
+				actionGroup = None
 			}
-			BrakesAction
+			DisableSuspension
+			{
+				actionGroup = None
+			}
+			ActAutoFrictionToggle
+			{
+				actionGroup = None
+			}
+		}
+	}
+	MODULE
+	{
+		name = ModuleWheelSuspension
+		isEnabled = True
+		suspensionPos = (-1, -1, -1)
+		autoBoost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleWheelSteering
+		isEnabled = True
+		steeringEnabled = False
+		steeringInvert = False
+		stagingEnabled = True
+		steeringEnabled_UIFlight
+		{
+			controlEnabled = True
+		}
+		steeringInvert_UIFlight
+		{
+			controlEnabled = True
+		}
+		EVENTS
+		{
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleWheelBrakes
+		isEnabled = True
+		brakeTweak = 100
+		brakeInput = 0
+		stagingEnabled = True
+		brakeTweak_UIFlight
+		{
+			controlEnabled = True
+			minValue = 0
+			maxValue = 100
+			stepIncrement = 0.1
+		}
+		EVENTS
+		{
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			BrakeAction
 			{
 				actionGroup = Brakes
 			}
@@ -4650,48 +4936,46 @@ PART
 	}
 	MODULE
 	{
-		name = ModuleSteering
+		name = ModuleStatusLight
 		isEnabled = True
-		steeringLocked = True
-		invertSteering = False
 		stagingEnabled = True
 		EVENTS
 		{
-			UnLockSteering
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleWheelDeployment
+		isEnabled = True
+		stateString = Deployed
+		stagingEnabled = True
+		position = 1
+		EVENTS
+		{
+			EventToggle
 			{
 				active = True
 				guiActive = True
 				guiActiveEditor = True
 				guiActiveUncommand = False
-				guiIcon = Unlock Steering
-				guiName = Unlock Steering
-				category = Unlock Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			LockSteering
-			{
-				active = False
-				guiActive = True
-				guiActiveEditor = True
-				guiActiveUncommand = False
-				guiIcon = Lock Steering
-				guiName = Lock Steering
-				category = Lock Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			InvertSteering
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiActiveUncommand = False
-				guiIcon = Invert Steering
-				guiName = Invert Steering
-				category = Invert Steering
+				guiIcon = Toggle
+				guiName = Start Extended
+				category = Toggle
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
@@ -4711,21 +4995,9 @@ PART
 		}
 		ACTIONS
 		{
-			InvertSteeringAction
+			ActionToggle
 			{
-				actionGroup = None
-			}
-			LockSteeringAction
-			{
-				actionGroup = None
-			}
-			UnlockSteeringAction
-			{
-				actionGroup = None
-			}
-			ToggleSteeringAction
-			{
-				actionGroup = None
+				actionGroup = Gear
 			}
 		}
 	}
@@ -4755,9 +5027,70 @@ PART
 	}
 	MODULE
 	{
+		name = FXModuleLookAtConstraint
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleTestSubject
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+			RunTestEvent
+			{
+				active = False
+				guiActive = True
+				guiActiveUncommand = False
+				guiIcon = Run Test
+				guiName = Run Test
+				category = Run Test
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
 		name = ModuleLight
 		isEnabled = True
 		isOn = False
+		uiWriteLock = False
 		lightR = 1
 		lightG = 1
 		lightB = 1
@@ -4840,12 +5173,49 @@ PART
 			}
 		}
 	}
+	MODULE
+	{
+		name = ModuleWheelDamage
+		isEnabled = True
+		isDamaged = False
+		stagingEnabled = True
+		EVENTS
+		{
+			EventRepairExternal
+			{
+				active = False
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Repair Wheel
+				guiName = Repair Wheel
+				category = Repair Wheel
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
 }
 PART
 {
 	part = delta.small_4294217494
 	partName = Part
-	pos = -1.252121,8.005696,-3.150375
+	pos = -1.252121,8.005696,-3.150376
 	attPos = 0,0,0
 	attPos0 = 1.250025,-0.8320928,-9.919324E-08
 	rot = 0.7071068,-4.214685E-08,0,-0.7071069
@@ -4902,7 +5272,7 @@ PART
 {
 	part = delta.small_4294217378
 	partName = Part
-	pos = 1.247932,8.005696,-3.150375
+	pos = 1.247932,8.005696,-3.150376
 	attPos = 0,0,0
 	attPos0 = -1.250025,-0.8320928,-9.919324E-08
 	rot = 3.090862E-08,0.7071069,-0.7071068,1.123822E-08
@@ -4959,10 +5329,10 @@ PART
 {
 	part = smallHardpoint_4291226402
 	partName = Part
-	pos = -0.002094664,8.483891,-1.815615
+	pos = -0.002094664,8.483891,-1.815616
 	attPos = 0,0,0
 	attPos0 = 0,0.5026722,0.4781953
-	rot = -0.5,-0.5000002,-0.5,-0.5000002
+	rot = -0.5,-0.5000001,-0.5,-0.5000001
 	attRot = 0,0.9999999,0,0
 	attRot0 = 8.42937E-08,-0.7071068,-8.42937E-08,0.7071068
 	mir = 1,1,1
@@ -5128,10 +5498,10 @@ PART
 {
 	part = structuralPanel1_4292016438
 	partName = Part
-	pos = -0.002094365,7.983892,-2.015618
+	pos = -0.002094365,7.983892,-2.015619
 	attPos = 0.206283,-0.09703985,-5.220824E-07
 	attPos0 = -0.7062826,-0.102962,5.816869E-07
-	rot = -0.7071072,0.7071066,-2.107343E-08,-8.42937E-08
+	rot = -0.7071072,0.7071066,2.980232E-08,-1.192093E-07
 	attRot = 0.7071067,0,0,0.7071067
 	attRot0 = 2.365642E-07,-0.7071068,0.7071068,2.155616E-07
 	mir = 1,1,1
@@ -5166,10 +5536,10 @@ PART
 {
 	part = bahaAdjustableRail_4292016416
 	partName = Part
-	pos = -0.06128323,7.560769,-2.03242
+	pos = -0.06128326,7.560769,-2.032421
 	attPos = 0,0,0
 	attPos0 = 0.4231215,0.05918815,0.01680108
-	rot = 2.528811E-07,-2.95028E-07,-0.7071066,0.7071073
+	rot = 3.278255E-07,-3.278255E-07,-0.7071065,0.7071073
 	attRot = 0,0.7071067,0,-0.7071067
 	attRot0 = 1,5.684341E-14,2.384186E-07,-2.384186E-07
 	mir = 1,1,1
@@ -5302,10 +5672,10 @@ PART
 {
 	part = bahaMk82BombBrake_4292016370
 	partName = Part
-	pos = -0.2661486,7.560769,-2.168317
+	pos = -0.2661487,7.560769,-2.168318
 	attPos = 0,0,0
 	attPos0 = 5.196853E-09,-0.2048621,-0.1358985
-	rot = 2.107343E-07,2.528811E-07,-0.7071066,0.7071073
+	rot = 1.788139E-07,2.682209E-07,-0.7071066,0.7071072
 	attRot = 0,0.7071067,0,-0.7071067
 	attRot0 = -4.470348E-07,5.960464E-08,4.214683E-08,1
 	mir = 1,1,1
@@ -5429,10 +5799,10 @@ PART
 {
 	part = bahaAdjustableRail_4292016222
 	partName = Part
-	pos = 0.05709474,7.560769,-2.03242
+	pos = 0.05709476,7.560769,-2.032421
 	attPos = 0,0,0
 	attPos0 = 0.4231215,-0.05918815,0.01680108
-	rot = 2.739545E-07,4.214685E-08,0.7071072,0.7071067
+	rot = 2.682209E-07,0,0.7071072,0.7071067
 	attRot = 0,0.7071067,0,-0.7071067
 	attRot0 = 8.429364E-08,-1,2.384186E-07,-2.384186E-07
 	mir = 1,1,1
@@ -5565,10 +5935,10 @@ PART
 {
 	part = bahaMk82BombBrake_4292016176
 	partName = Part
-	pos = 0.2619563,7.560769,-2.168317
+	pos = 0.2619563,7.560769,-2.168318
 	attPos = 0,0,0
 	attPos0 = 2.93403E-08,-0.2048621,-0.1358985
-	rot = -2.107343E-07,-2.107343E-07,0.7071073,0.7071066
+	rot = -2.086163E-07,-1.788139E-07,0.7071072,0.7071066
 	attRot = 0,0.7071067,0,-0.7071067
 	attRot0 = -4.470348E-07,-2.980238E-08,2.04281E-14,1
 	mir = 1,1,1
@@ -5692,10 +6062,10 @@ PART
 {
 	part = bahaAdjustableRail_4292016028
 	partName = Part
-	pos = -0.06128268,7.899496,-2.009806
+	pos = -0.0612827,7.899496,-2.009807
 	attPos = 0,0,0
 	attPos0 = 0.08439636,0.05918835,-0.005813082
-	rot = 2.528811E-07,-2.95028E-07,-0.7071066,0.7071073
+	rot = 3.278255E-07,-3.278255E-07,-0.7071065,0.7071073
 	attRot = 0,0.7071067,0,-0.7071067
 	attRot0 = 1,5.684341E-14,2.384186E-07,-2.384186E-07
 	mir = 1,1,1
@@ -5828,10 +6198,10 @@ PART
 {
 	part = bahaMk82BombBrake_4292015982
 	partName = Part
-	pos = -0.2661487,7.899496,-2.145705
+	pos = -0.2661488,7.899496,-2.145706
 	attPos = 0,0,0
 	attPos0 = 5.196853E-09,-0.2048621,-0.1358985
-	rot = 2.107343E-07,2.528811E-07,-0.7071066,0.7071073
+	rot = 1.788139E-07,2.682209E-07,-0.7071066,0.7071072
 	attRot = 0,0.7071067,0,-0.7071067
 	attRot0 = -4.470348E-07,5.960464E-08,4.214683E-08,1
 	mir = 1,1,1
@@ -5955,10 +6325,10 @@ PART
 {
 	part = bahaAdjustableRail_4292015834
 	partName = Part
-	pos = 0.05709407,7.899496,-2.009806
+	pos = 0.05709409,7.899496,-2.009807
 	attPos = 0,0,0
 	attPos0 = 0.08439636,-0.05918835,-0.005813082
-	rot = 2.739545E-07,4.214685E-08,0.7071072,0.7071067
+	rot = 2.682209E-07,0,0.7071072,0.7071067
 	attRot = 0,0.7071067,0,-0.7071067
 	attRot0 = 8.429364E-08,-1,2.384186E-07,-2.384186E-07
 	mir = 1,1,1
@@ -6091,10 +6461,10 @@ PART
 {
 	part = bahaMk82BombBrake_4292015788
 	partName = Part
-	pos = 0.2619565,7.899496,-2.145704
+	pos = 0.2619565,7.899496,-2.145705
 	attPos = 0,0,0
 	attPos0 = 5.196853E-09,-0.2048621,-0.1358985
-	rot = -2.528811E-07,-1.685874E-07,0.7071072,0.7071068
+	rot = -2.384186E-07,-1.490116E-07,0.7071071,0.7071068
 	attRot = 0,0.7071067,0,-0.7071067
 	attRot0 = -4.470348E-07,5.960464E-08,4.214683E-08,1
 	mir = 1,1,1
@@ -6218,10 +6588,10 @@ PART
 {
 	part = bahaAdjustableRail_4292015640
 	partName = Part
-	pos = -0.06128376,8.221991,-2.032419
+	pos = -0.06128379,8.221991,-2.03242
 	attPos = 0,0,0
 	attPos0 = -0.2380992,0.05918853,0.01680101
-	rot = 2.528811E-07,-2.95028E-07,-0.7071066,0.7071073
+	rot = 3.278255E-07,-3.278255E-07,-0.7071065,0.7071073
 	attRot = 0,0.7071067,0,-0.7071067
 	attRot0 = 1,5.684341E-14,2.384186E-07,-2.384186E-07
 	mir = 1,1,1
@@ -6354,10 +6724,10 @@ PART
 {
 	part = bahaMk82BombBrake_4292015594
 	partName = Part
-	pos = -0.2661482,8.221991,-2.16832
+	pos = -0.2661483,8.221991,-2.168321
 	attPos = 0,0,0
 	attPos0 = 5.196853E-09,-0.2048621,-0.1358985
-	rot = 2.107343E-07,2.528811E-07,-0.7071066,0.7071073
+	rot = 1.788139E-07,2.682209E-07,-0.7071066,0.7071072
 	attRot = 0,0.7071067,0,-0.7071067
 	attRot0 = -4.470348E-07,5.960464E-08,4.214683E-08,1
 	mir = 1,1,1
@@ -6481,10 +6851,10 @@ PART
 {
 	part = bahaAdjustableRail_4292015446
 	partName = Part
-	pos = 0.05709453,8.221992,-2.032419
+	pos = 0.05709454,8.221992,-2.03242
 	attPos = 0,0,0
 	attPos0 = -0.2380992,-0.05918853,0.01680101
-	rot = 2.739545E-07,4.214685E-08,0.7071072,0.7071067
+	rot = 2.682209E-07,0,0.7071072,0.7071067
 	attRot = 0,0.7071067,0,-0.7071067
 	attRot0 = 8.429364E-08,-1,2.384186E-07,-2.384186E-07
 	mir = 1,1,1
@@ -6617,10 +6987,10 @@ PART
 {
 	part = bahaMk82BombBrake_4292015400
 	partName = Part
-	pos = 0.2619568,8.221992,-2.168317
+	pos = 0.2619568,8.221992,-2.168318
 	attPos = 0,0,0
 	attPos0 = 5.196853E-09,-0.2048621,-0.1358985
-	rot = -2.528811E-07,-1.685874E-07,0.7071072,0.7071068
+	rot = -2.384186E-07,-1.490116E-07,0.7071071,0.7071068
 	attRot = 0,0.7071067,0,-0.7071067
 	attRot0 = -4.470348E-07,5.960464E-08,4.214683E-08,1
 	mir = 1,1,1
@@ -6754,7 +7124,7 @@ PART
 	symMethod = Radial
 	istg = 0
 	dstg = 0
-	sidx = 4
+	sidx = 2
 	sqor = 0
 	sepI = 0
 	attm = 1
@@ -6776,6 +7146,7 @@ PART
 		name = ModuleParachute
 		isEnabled = True
 		persistentState = STOWED
+		animTime = 0
 		minAirPressureToOpen = 0.04
 		deployAltitude = 1000
 		stagingEnabled = True
@@ -6957,10 +7328,10 @@ PART
 {
 	part = SmallGearBay_4294191268
 	partName = Part
-	pos = -0.002094661,7.205447,2.51069
+	pos = -0.002094663,7.305447,2.51069
 	attPos = 0,-0.8287817,0.009456217
 	attPos0 = 3.026798E-09,-0.05660239,0.8002497
-	rot = -8.42937E-08,-1.256074E-15,8.126309E-09,1
+	rot = -1.192093E-07,-1.332268E-15,8.12631E-09,1
 	attRot = 0,0,0,1
 	attRot0 = -0.7071069,5.746157E-09,5.746159E-09,0.7071068
 	mir = 1,1,1
@@ -6986,75 +7357,36 @@ PART
 	}
 	MODULE
 	{
-		name = ModuleLandingGear
+		name = ModuleWheelBase
 		isEnabled = True
-		BrakeTorque = 12
-		brakesEngaged = False
-		brakesEnabled = True
-		storedGearState = UNDEFINED
-		storedAnimationSpeed = 0
-		storedAnimationTime = 0
-		StartDeployed = True
+		wheelType = FREE
+		isGrounded = False
+		autoFriction = True
+		frictionMultiplier = 1
+		suspensionEnabled = True
 		stagingEnabled = True
-		BrakeTorque_UIFlight
+		frictionMultiplier_UIFlight
 		{
 			controlEnabled = True
-			minValue = 0
-			maxValue = 30
-			stepIncrement = 1
+			minValue = 0.01
+			maxValue = 5
+			stepIncrement = 0.01
 		}
-		StartDeployed_UIFlight
+		suspensionEnabled_UIFlight
 		{
 			controlEnabled = True
 		}
 		EVENTS
 		{
-			EnableBrakes
-			{
-				active = False
-				guiActive = False
-				guiActiveEditor = True
-				guiActiveUncommand = False
-				guiIcon = Enable brakes
-				guiName = Enable brakes
-				category = Enable brakes
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			DisableBrakes
-			{
-				active = True
-				guiActive = False
-				guiActiveEditor = True
-				guiActiveUncommand = False
-				guiIcon = Disable brakes
-				guiName = Disable brakes
-				category = Disable brakes
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			LowerLandingGear
-			{
-				active = False
-				guiActive = True
-				guiActiveUncommand = False
-				guiIcon = Lower Gear
-				guiName = Lower Gear
-				category = Lower Gear
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			RaiseLandingGear
+			EvtAutoFrictionToggle
 			{
 				active = True
 				guiActive = True
+				guiActiveEditor = True
 				guiActiveUncommand = False
-				guiIcon = Raise Gear
-				guiName = Raise Gear
-				category = Raise Gear
+				guiIcon = 
+				guiName = Friction Control: Auto
+				category = 
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
@@ -7074,11 +7406,112 @@ PART
 		}
 		ACTIONS
 		{
-			OnAction
+			EnableSuspension
 			{
-				actionGroup = Gear
+				actionGroup = None
 			}
-			BrakesAction
+			DisableSuspension
+			{
+				actionGroup = None
+			}
+			ActAutoFrictionToggle
+			{
+				actionGroup = None
+			}
+		}
+	}
+	MODULE
+	{
+		name = ModuleWheelSuspension
+		isEnabled = True
+		suspensionPos = (-1, -1, -1)
+		autoBoost = 0
+		stagingEnabled = True
+		EVENTS
+		{
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleWheelSteering
+		isEnabled = True
+		steeringEnabled = False
+		steeringInvert = False
+		stagingEnabled = True
+		steeringEnabled_UIFlight
+		{
+			controlEnabled = True
+		}
+		steeringInvert_UIFlight
+		{
+			controlEnabled = True
+		}
+		EVENTS
+		{
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleWheelBrakes
+		isEnabled = True
+		brakeTweak = 100
+		brakeInput = 0
+		stagingEnabled = True
+		brakeTweak_UIFlight
+		{
+			controlEnabled = True
+			minValue = 0
+			maxValue = 100
+			stepIncrement = 0.1
+		}
+		EVENTS
+		{
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+			BrakeAction
 			{
 				actionGroup = Brakes
 			}
@@ -7086,48 +7519,46 @@ PART
 	}
 	MODULE
 	{
-		name = ModuleSteering
+		name = ModuleStatusLight
 		isEnabled = True
-		steeringLocked = True
-		invertSteering = False
 		stagingEnabled = True
 		EVENTS
 		{
-			UnLockSteering
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleWheelDeployment
+		isEnabled = True
+		stateString = Deployed
+		stagingEnabled = True
+		position = 1
+		EVENTS
+		{
+			EventToggle
 			{
 				active = True
 				guiActive = True
 				guiActiveEditor = True
 				guiActiveUncommand = False
-				guiIcon = Unlock Steering
-				guiName = Unlock Steering
-				category = Unlock Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			LockSteering
-			{
-				active = False
-				guiActive = True
-				guiActiveEditor = True
-				guiActiveUncommand = False
-				guiIcon = Lock Steering
-				guiName = Lock Steering
-				category = Lock Steering
-				guiActiveUnfocused = False
-				unfocusedRange = 2
-				externalToEVAOnly = True
-			}
-			InvertSteering
-			{
-				active = True
-				guiActive = True
-				guiActiveEditor = True
-				guiActiveUncommand = False
-				guiIcon = Invert Steering
-				guiName = Invert Steering
-				category = Invert Steering
+				guiIcon = Toggle
+				guiName = Start Extended
+				category = Toggle
 				guiActiveUnfocused = False
 				unfocusedRange = 2
 				externalToEVAOnly = True
@@ -7147,21 +7578,9 @@ PART
 		}
 		ACTIONS
 		{
-			InvertSteeringAction
+			ActionToggle
 			{
-				actionGroup = None
-			}
-			LockSteeringAction
-			{
-				actionGroup = None
-			}
-			UnlockSteeringAction
-			{
-				actionGroup = None
-			}
-			ToggleSteeringAction
-			{
-				actionGroup = None
+				actionGroup = Gear
 			}
 		}
 	}
@@ -7191,9 +7610,70 @@ PART
 	}
 	MODULE
 	{
+		name = FXModuleLookAtConstraint
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
+		name = ModuleTestSubject
+		isEnabled = True
+		stagingEnabled = True
+		EVENTS
+		{
+			RunTestEvent
+			{
+				active = False
+				guiActive = True
+				guiActiveUncommand = False
+				guiIcon = Run Test
+				guiName = Run Test
+				category = Run Test
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
+	MODULE
+	{
 		name = ModuleLight
 		isEnabled = True
 		isOn = False
+		uiWriteLock = False
 		lightR = 1
 		lightG = 1
 		lightB = 1
@@ -7276,15 +7756,52 @@ PART
 			}
 		}
 	}
+	MODULE
+	{
+		name = ModuleWheelDamage
+		isEnabled = True
+		isDamaged = False
+		stagingEnabled = True
+		EVENTS
+		{
+			EventRepairExternal
+			{
+				active = False
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Repair Wheel
+				guiName = Repair Wheel
+				category = Repair Wheel
+				guiActiveUnfocused = True
+				unfocusedRange = 4
+				externalToEVAOnly = True
+			}
+			ToggleStaging
+			{
+				active = True
+				guiActive = False
+				guiActiveUncommand = False
+				guiIcon = Disable Staging
+				guiName = Disable Staging
+				category = Disable Staging
+				guiActiveUnfocused = False
+				unfocusedRange = 2
+				externalToEVAOnly = True
+			}
+		}
+		ACTIONS
+		{
+		}
+	}
 }
 PART
 {
 	part = missileController_4292282798
 	partName = Part
-	pos = -0.002094664,7.33957,0.03594184
+	pos = -0.002094664,7.33957,0.03594136
 	attPos = 0,-0.04978251,0.03006315
 	attPos0 = 0,-0.4614213,0.6662012
-	rot = -0.9999501,0,0,0.01000503
+	rot = -0.9999501,0,0,0.01000509
 	attRot = -0.7372776,0,0,-0.6755903
 	attRot0 = 0.6829329,0,0,0.7304813
 	mir = 1,1,1
@@ -7530,10 +8047,10 @@ PART
 {
 	part = bahaCmPod_4292164224
 	partName = Part
-	pos = -3.955901,7.296762,-2.321322
+	pos = -3.955901,7.296762,-2.321323
 	attPos = 0.01186968,-0.5779645,-0.1021101
 	attPos0 = 0.7089329,-0.7885835,0.1899583
-	rot = 0.9914446,-0.1305261,-0.0001204662,0.0009139966
+	rot = 0.9914446,-0.1305262,-0.0001204833,0.0009139478
 	attRot = 0,0,0,1
 	attRot0 = 0.5604683,0.4308558,-0.4300625,0.5615023
 	mir = 1,1,1
@@ -7614,10 +8131,10 @@ PART
 {
 	part = bahaCmPod_4286411360
 	partName = Part
-	pos = 3.95172,7.296761,-2.321323
+	pos = 3.951721,7.296761,-2.321324
 	attPos = 0.01186968,-0.5779645,-0.1021101
 	attPos0 = -0.7089333,-0.7885841,0.189924
-	rot = 0.9914446,0.1305261,0.0001205927,0.0009136595
+	rot = 0.9914446,0.1305261,0.0001205951,0.0009137094
 	attRot = 0,0,0,1
 	attRot0 = 0.5604682,-0.4308558,0.4300624,0.5615025
 	mir = 1,1,1
@@ -7698,10 +8215,10 @@ PART
 {
 	part = smallHardpoint_4289209190
 	partName = Part
-	pos = -2.652588,7.905696,-1.488363
+	pos = -2.652588,7.905696,-1.488364
 	attPos = -0.03181255,0.0209112,-0.15625
 	attPos0 = -1.368188,-0.02091318,0.25625
-	rot = -0.5000001,-0.5000002,-0.5,-0.4999999
+	rot = -0.5000001,-0.5000003,-0.5000001,-0.4999999
 	attRot = 0,0.7071067,0,0.7071067
 	attRot0 = -1.300562E-07,-0.7071068,1.74578E-08,-0.7071068
 	mir = 1,1,1
@@ -7869,10 +8386,10 @@ PART
 {
 	part = bahaAdjustableRail_4289209156
 	partName = Part
-	pos = -2.610592,7.698523,-1.693185
+	pos = -2.610592,7.698523,-1.693186
 	attPos = 0,0,0
 	attPos0 = -0.2071766,-0.2048214,0.04200003
-	rot = -5.057622E-07,2.528811E-07,-0.7071062,-0.7071075
+	rot = -5.364418E-07,2.980232E-07,-0.7071062,-0.7071075
 	attRot = 0,0,0.7071067,0.7071067
 	attRot0 = -0.7071068,3.821461E-07,4.527865E-07,0.7071068
 	mir = 1,1,1
@@ -8005,10 +8522,10 @@ PART
 {
 	part = bahaMk82Bomb_4289209106
 	partName = Part
-	pos = -2.32573,7.691455,-1.590854
+	pos = -2.32573,7.691455,-1.590855
 	attPos = 1.31991E-06,-0.03513655,-0.2292647
 	attPos0 = -0.007065592,-0.284862,0.1023323
-	rot = -4.214685E-07,1.011524E-06,-0.7071062,-0.7071076
+	rot = -4.172325E-07,9.834766E-07,-0.7071061,-0.7071076
 	attRot = 0,-0.7071067,0,-0.7071067
 	attRot0 = -6.109472E-07,-5.513434E-07,-2.528809E-07,1
 	mir = 1,1,1
@@ -8132,10 +8649,10 @@ PART
 {
 	part = bahaAdjustableRail_4289209054
 	partName = Part
-	pos = -2.694584,7.698522,-1.693185
+	pos = -2.694584,7.698522,-1.693186
 	attPos = 0,0,0
 	attPos0 = -0.2071766,-0.2048214,-0.04199997
-	rot = -1.896608E-07,-4.214685E-07,0.707108,-0.7071058
+	rot = -1.788139E-07,-5.066395E-07,0.707108,-0.7071057
 	attRot = 0,0,0.7071067,0.7071067
 	attRot0 = 4.527239E-07,-0.7071068,-0.7071068,-3.820835E-07
 	mir = 1,1,1
@@ -8269,10 +8786,10 @@ PART
 {
 	part = bahaAdjustableRail_4289209004
 	partName = Part
-	pos = -2.662882,7.629137,-1.725796
+	pos = -2.662883,7.629137,-1.725797
 	attPos = 0,0,0
 	attPos0 = 0.06938036,0.03170607,-0.0326086
-	rot = -8.007902E-07,-1.177192E-06,9.762456E-07,-1
+	rot = -8.34465E-07,-1.18139E-06,1.027704E-06,-1
 	attRot = 0.4999999,-0.4999999,0.4999999,-0.4999999
 	attRot0 = -1.053675E-07,7.375697E-07,0.7071068,0.7071069
 	mir = 1,1,1
@@ -8404,10 +8921,10 @@ PART
 {
 	part = bahaMk82Bomb_4289208954
 	partName = Part
-	pos = -2.656837,7.264273,-1.619661
+	pos = -2.656837,7.264273,-1.619662
 	attPos = 1.31991E-06,-0.03513655,-0.2292647
 	attPos0 = 0.006045288,-0.3648639,0.1061357
-	rot = 2.107343E-07,-9.089708E-07,-9.762456E-07,1
+	rot = 2.086163E-07,-9.680992E-07,-9.012634E-07,1
 	attRot = 0,0.9999999,0,0
 	attRot0 = 5.057602E-07,1.995002E-06,2.804706E-08,-1
 	mir = 1,1,1
@@ -8530,10 +9047,10 @@ PART
 {
 	part = bahaMk82Bomb_4289208902
 	partName = Part
-	pos = -2.979448,7.691455,-1.590854
+	pos = -2.979449,7.691455,-1.590855
 	attPos = 1.31991E-06,-0.03513655,-0.2292647
 	attPos0 = 0.007066634,-0.2848627,0.1023323
-	rot = -2.528811E-07,-1.243332E-06,0.7071061,-0.7071077
+	rot = -2.980232E-07,-1.192093E-06,0.7071061,-0.7071077
 	attRot = 0,-0.7071067,0,-0.7071067
 	attRot0 = -6.258505E-07,6.25848E-07,2.655251E-06,1
 	mir = 1,1,1
@@ -8657,10 +9174,10 @@ PART
 {
 	part = smallHardpoint_4289204932
 	partName = Part
-	pos = 2.648398,7.905696,-1.488364
+	pos = 2.648398,7.905696,-1.488365
 	attPos = 0.03181577,0.02090977,-0.15625
 	attPos0 = 3.86917,-0.02091287,0.2562497
-	rot = 0.5000001,0.4999999,0.5000002,0.5000001
+	rot = 0.5000001,0.4999999,0.5000001,0.5000001
 	attRot = 0,0.7071067,0,0.7071067
 	attRot0 = -8.067806E-08,0.7071069,1.511296E-07,0.7071067
 	mir = 1,1,1
@@ -8828,10 +9345,10 @@ PART
 {
 	part = bahaAdjustableRail_4289204898
 	partName = Part
-	pos = 2.690395,7.698523,-1.693187
+	pos = 2.690395,7.698523,-1.693188
 	attPos = 0,0,0
 	attPos0 = -0.2071766,-0.2048214,0.04200003
-	rot = 2.528811E-07,-5.479091E-07,0.7071062,0.7071077
+	rot = 2.086163E-07,-5.662441E-07,0.7071061,0.7071077
 	attRot = 0,0,0.7071067,0.7071067
 	attRot0 = -0.7071068,3.821461E-07,4.527865E-07,0.7071068
 	mir = 1,1,1
@@ -8964,10 +9481,10 @@ PART
 {
 	part = bahaMk82Bomb_4289204848
 	partName = Part
-	pos = 2.975256,7.691455,-1.590855
+	pos = 2.975256,7.691455,-1.590856
 	attPos = 1.31991E-06,-0.03513655,-0.2292647
 	attPos0 = -0.007065592,-0.284862,0.1023323
-	rot = 2.95028E-07,-1.306552E-06,0.7071061,0.7071078
+	rot = 2.980232E-07,-1.251698E-06,0.707106,0.7071077
 	attRot = 0,-0.7071067,0,-0.7071067
 	attRot0 = -6.109472E-07,-5.513434E-07,-2.528809E-07,1
 	mir = 1,1,1
@@ -9091,10 +9608,10 @@ PART
 {
 	part = bahaAdjustableRail_4289204796
 	partName = Part
-	pos = 2.606403,7.698522,-1.693187
+	pos = 2.606403,7.698522,-1.693188
 	attPos = 0,0,0
 	attPos0 = -0.2071766,-0.2048214,-0.04199997
-	rot = 5.900559E-07,4.214685E-08,-0.7071081,0.7071057
+	rot = 5.662441E-07,2.980232E-08,-0.707108,0.7071058
 	attRot = 0,0,0.7071067,0.7071067
 	attRot0 = 4.527239E-07,-0.7071068,-0.7071068,-3.820835E-07
 	mir = 1,1,1
@@ -9228,10 +9745,10 @@ PART
 {
 	part = bahaAdjustableRail_4289204746
 	partName = Part
-	pos = 2.638106,7.629137,-1.725797
+	pos = 2.638106,7.629137,-1.725798
 	attPos = 0,0,0
 	attPos0 = 0.06938036,0.03170607,-0.0326086
-	rot = 7.586433E-07,8.046629E-07,-1.129931E-06,1
+	rot = 8.34465E-07,8.020687E-07,-1.196291E-06,1
 	attRot = 0.4999999,-0.4999999,0.4999999,-0.4999999
 	attRot0 = -1.053675E-07,7.375697E-07,0.7071068,0.7071069
 	mir = 1,1,1
@@ -9363,10 +9880,10 @@ PART
 {
 	part = bahaMk82Bomb_4289204696
 	partName = Part
-	pos = 2.644151,7.264273,-1.619663
+	pos = 2.644151,7.264273,-1.619664
 	attPos = 1.31991E-06,-0.03513655,-0.2292647
 	attPos0 = 0.006045288,-0.3648639,0.1061357
-	rot = -2.528811E-07,1.2815E-06,1.10013E-06,-1
+	rot = -2.682209E-07,1.305274E-06,1.069851E-06,-1
 	attRot = 0,0.9999999,0,0
 	attRot0 = 5.057602E-07,1.995002E-06,2.804706E-08,-1
 	mir = 1,1,1
@@ -9489,10 +10006,10 @@ PART
 {
 	part = bahaMk82Bomb_4289204644
 	partName = Part
-	pos = 2.32154,7.691455,-1.590856
+	pos = 2.32154,7.691455,-1.590857
 	attPos = 1.31991E-06,-0.03513655,-0.2292647
 	attPos0 = 0.007066634,-0.2848627,0.1023323
-	rot = 5.479091E-07,9.693775E-07,-0.7071061,0.7071077
+	rot = 6.556511E-07,1.013279E-06,-0.7071062,0.7071077
 	attRot = 0,-0.7071067,0,-0.7071067
 	attRot0 = -6.258505E-07,6.25848E-07,2.655251E-06,1
 	mir = 1,1,1
@@ -9616,10 +10133,10 @@ PART
 {
 	part = smallHardpoint_4289204352
 	partName = Part
-	pos = -5.182415,7.905696,-1.633162
+	pos = -5.182415,7.905696,-1.633163
 	attPos = 0.03791088,0.03820064,-0.1562459
 	attPos0 = -0.8379118,-0.1382011,0.2562501
-	rot = -0.5000013,-0.4999983,-0.4999997,-0.5000011
+	rot = -0.5000013,-0.4999982,-0.4999997,-0.5000011
 	attRot = 0,0.7071067,0,0.7071067
 	attRot0 = 2.694616E-07,0.7071068,-2.55669E-08,0.7071069
 	mir = 1,1,1
@@ -9787,10 +10304,10 @@ PART
 {
 	part = bahaAdjustableRail_4289204318
 	partName = Part
-	pos = -5.14042,7.69852,-1.837985
+	pos = -5.14042,7.69852,-1.837986
 	attPos = 0,0,0
 	attPos0 = -0.2071766,-0.2048214,0.04200003
-	rot = -6.322028E-07,1.116892E-06,-0.7071047,-0.707109
+	rot = -7.152557E-07,1.102686E-06,-0.7071048,-0.7071092
 	attRot = 0,0,0.7071067,0.7071067
 	attRot0 = -0.7071068,3.821461E-07,4.527865E-07,0.7071068
 	mir = 1,1,1
@@ -9924,10 +10441,10 @@ PART
 {
 	part = bahaMk82Bomb_4289204268
 	partName = Part
-	pos = -4.855557,7.691454,-1.735652
+	pos = -4.855557,7.691454,-1.735653
 	attPos = 1.31991E-06,-0.03513655,-0.2292647
 	attPos0 = -0.007065592,-0.284862,0.1023323
-	rot = -4.214685E-07,2.001975E-06,-0.7071044,-0.7071093
+	rot = -3.874302E-07,2.026558E-06,-0.7071046,-0.7071093
 	attRot = 0,-0.7071067,0,-0.7071067
 	attRot0 = -6.109472E-07,-5.513434E-07,-2.528809E-07,1
 	mir = 1,1,1
@@ -10052,10 +10569,10 @@ PART
 {
 	part = bahaAdjustableRail_4289204216
 	partName = Part
-	pos = -5.224413,7.69852,-1.837985
+	pos = -5.224413,7.69852,-1.837986
 	attPos = 0,0,0
 	attPos0 = -0.2071766,-0.2048214,-0.04199997
-	rot = -1.116892E-06,-3.371748E-07,0.7071096,-0.7071043
+	rot = -1.072884E-06,-4.172325E-07,0.7071095,-0.7071043
 	attRot = 0,0,0.7071067,0.7071067
 	attRot0 = 4.527239E-07,-0.7071068,-0.7071068,-3.820835E-07
 	mir = 1,1,1
@@ -10190,10 +10707,10 @@ PART
 {
 	part = bahaAdjustableRail_4289204166
 	partName = Part
-	pos = -5.192711,7.629135,-1.870594
+	pos = -5.192711,7.629135,-1.870595
 	attPos = 0,0,0
 	attPos0 = 0.06938036,0.03170607,-0.0326086
-	rot = -1.47514E-06,-4.023312E-07,3.25101E-06,-1
+	rot = -1.460314E-06,-3.595267E-07,3.324708E-06,-1
 	attRot = 0.4999999,-0.4999999,0.4999999,-0.4999999
 	attRot0 = -1.053675E-07,7.375697E-07,0.7071068,0.7071069
 	mir = 1,1,1
@@ -10326,10 +10843,10 @@ PART
 {
 	part = bahaMk82Bomb_4289204116
 	partName = Part
-	pos = -5.186667,7.264271,-1.76446
+	pos = -5.186667,7.264271,-1.764461
 	attPos = 1.31991E-06,-0.03513655,-0.2292647
 	attPos0 = 0.006045288,-0.3648639,0.1061357
-	rot = 8.850839E-07,-1.594425E-06,-3.310615E-06,1
+	rot = 7.748604E-07,-1.579229E-06,-3.282561E-06,1
 	attRot = 0,0.9999999,0,0
 	attRot0 = 5.057602E-07,1.995002E-06,2.804706E-08,-1
 	mir = 1,1,1
@@ -10453,10 +10970,10 @@ PART
 {
 	part = bahaMk82Bomb_4289204064
 	partName = Part
-	pos = -5.509275,7.691457,-1.735651
+	pos = -5.509275,7.691457,-1.735652
 	attPos = 1.31991E-06,-0.03513655,-0.2292647
 	attPos0 = 0.007066634,-0.2848627,0.1023323
-	rot = -1.243332E-06,-1.180112E-06,0.7071077,-0.7071062
+	rot = -1.2815E-06,-1.102686E-06,0.7071078,-0.7071061
 	attRot = 0,-0.7071067,0,-0.7071067
 	attRot0 = -6.258505E-07,6.25848E-07,2.655251E-06,1
 	mir = 1,1,1
@@ -10581,10 +11098,10 @@ PART
 {
 	part = smallHardpoint_4289199988
 	partName = Part
-	pos = 5.178226,7.905696,-1.633163
+	pos = 5.178227,7.905696,-1.633164
 	attPos = 0.03791434,0.03820122,0.1562458
 	attPos0 = -0.8378783,-0.138199,-0.256247
-	rot = 0.4999999,0.5000011,0.5000013,0.4999981
+	rot = 0.4999999,0.5000011,0.5000013,0.499998
 	attRot = 0,0.7071067,0,0.7071067
 	attRot0 = -7.587466E-08,-0.7071055,6.870047E-07,0.7071082
 	mir = 1,1,1
@@ -10752,10 +11269,10 @@ PART
 {
 	part = bahaAdjustableRail_4289199954
 	partName = Part
-	pos = 5.220224,7.698521,-1.837986
+	pos = 5.220226,7.698521,-1.837987
 	attPos = 0,0,0
 	attPos0 = -0.2071766,-0.2048214,0.04200003
-	rot = 1.53836E-06,-3.371748E-07,0.7071079,0.7071061
+	rot = 1.579523E-06,-3.874302E-07,0.7071079,0.7071061
 	attRot = 0,0,0.7071067,0.7071067
 	attRot0 = -0.7071068,3.821461E-07,4.527865E-07,0.7071068
 	mir = 1,1,1
@@ -10889,10 +11406,10 @@ PART
 {
 	part = bahaMk82Bomb_4289199904
 	partName = Part
-	pos = 5.505088,7.691457,-1.735656
+	pos = 5.505089,7.691457,-1.735657
 	attPos = 1.31991E-06,-0.03513655,-0.2292647
 	attPos0 = -0.007065592,-0.284862,0.1023323
-	rot = 1.517287E-06,-1.095818E-06,0.7071078,0.7071062
+	rot = 1.519918E-06,-1.072884E-06,0.7071078,0.7071061
 	attRot = 0,-0.7071067,0,-0.7071067
 	attRot0 = -6.109472E-07,-5.513434E-07,-2.528809E-07,1
 	mir = 1,1,1
@@ -11017,10 +11534,10 @@ PART
 {
 	part = bahaAdjustableRail_4289199852
 	partName = Part
-	pos = 5.136232,7.69852,-1.837986
+	pos = 5.136234,7.69852,-1.837987
 	attPos = 0,0,0
 	attPos0 = -0.2071766,-0.2048214,-0.04199997
-	rot = 2.95028E-07,1.411919E-06,-0.7071066,0.7071073
+	rot = 3.576279E-07,1.400709E-06,-0.7071065,0.7071072
 	attRot = 0,0,0.7071067,0.7071067
 	attRot0 = 4.527239E-07,-0.7071068,-0.7071068,-3.820835E-07
 	mir = 1,1,1
@@ -11155,10 +11672,10 @@ PART
 {
 	part = bahaAdjustableRail_4289199802
 	partName = Part
-	pos = 5.167937,7.629135,-1.870596
+	pos = 5.167939,7.629135,-1.870597
 	attPos = 0,0,0
 	attPos0 = 0.06938036,0.03170607,-0.0326086
-	rot = 1.517287E-06,1.907348E-06,1.164294E-06,1
+	rot = 1.579523E-06,1.993247E-06,1.000744E-06,1
 	attRot = 0.4999999,-0.4999999,0.4999999,-0.4999999
 	attRot0 = -1.053675E-07,7.375697E-07,0.7071068,0.7071069
 	mir = 1,1,1
@@ -11291,10 +11808,10 @@ PART
 {
 	part = bahaMk82Bomb_4289199752
 	partName = Part
-	pos = 5.173985,7.26427,-1.764463
+	pos = 5.173987,7.26427,-1.764464
 	attPos = 1.31991E-06,-0.03513655,-0.2292647
 	attPos0 = 0.006045288,-0.3648639,0.1061357
-	rot = -1.053671E-06,2.831225E-07,-1.149393E-06,-1
+	rot = -9.834766E-07,2.826833E-07,-1.253626E-06,-1
 	attRot = 0,0.9999999,0,0
 	attRot0 = 5.057602E-07,1.995002E-06,2.804706E-08,-1
 	mir = 1,1,1
@@ -11418,10 +11935,10 @@ PART
 {
 	part = bahaMk82Bomb_4289199700
 	partName = Part
-	pos = 4.85137,7.691453,-1.735654
+	pos = 4.851371,7.691453,-1.735655
 	attPos = 1.31991E-06,-0.03513655,-0.2292647
 	attPos0 = 0.007066634,-0.2848627,0.1023323
-	rot = 3.793216E-07,2.254857E-06,-0.7071047,0.7071092
+	rot = 2.980232E-07,2.324581E-06,-0.7071047,0.7071092
 	attRot = 0,-0.7071067,0,-0.7071067
 	attRot0 = -6.258505E-07,6.25848E-07,2.655251E-06,1
 	mir = 1,1,1
@@ -11546,10 +12063,10 @@ PART
 {
 	part = bahaChaffPod_4290983488
 	partName = Part
-	pos = -3.578274,7.305301,-2.290408
+	pos = -3.578274,7.305301,-2.290409
 	attPos = 0,0,0
 	attPos0 = 0.7003942,-0.7576694,-0.1876698
-	rot = 0.9914445,0.1305262,0.0001346539,0.001024464
+	rot = 0.9914444,0.1305262,0.0001346841,0.001024425
 	attRot = 0,0,0,1
 	attRot0 = 0.4300143,0.5615649,-0.5604056,0.4309038
 	mir = 1,1,1
@@ -11630,10 +12147,10 @@ PART
 {
 	part = bahaChaffPod_4290983266
 	partName = Part
-	pos = 3.574086,7.305301,-2.290409
+	pos = 3.574087,7.305301,-2.29041
 	attPos = 0,0,0
 	attPos0 = -0.7003947,-0.7576697,-0.1877101
-	rot = 0.9914445,-0.1305264,-0.0001346328,0.001024464
+	rot = 0.9914443,-0.1305264,-0.0001345873,0.001024455
 	attRot = 0,0,0,1
 	attRot0 = 0.4300142,-0.5615649,0.5604056,0.4309041
 	mir = 1,1,1
