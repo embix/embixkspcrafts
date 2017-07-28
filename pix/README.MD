@@ -1,0 +1,1 @@
+As imgur now want's to impersonate me with the connected Google Account, they no longer get my pix. Until I have found a better solution, I'll just dump them here :-(
